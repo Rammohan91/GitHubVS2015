@@ -26,13 +26,30 @@ namespace SeleniumFirst
             PropertiesCollection.driver = new ChromeDriver();
 
             //Navigate to Google Page
-            PropertiesCollection.driver.Navigate().GoToUrl("http://executeautomation.com/demosite/index.html?UserName=username&Password=password&Login=Login");
+            PropertiesCollection.driver.Navigate().GoToUrl("http://executeautomation.com/demosite/Login.html");
+            PropertiesCollection.driver.Manage().Window.Maximize();
 
         }
 
         [Test]
         public void ExecuteTest()
         {
+
+            LoginPageObject LoginPage = new LoginPageObject();
+            LoginPage.Login("username", "password");
+            
+
+
+
+            EAPageObject Page = new EAPageObject();
+            Page.FillFormDetails("B.", "Rammohan", "Manikyala Rao");
+
+            
+            //Page.txtIntital.SendKeys("Execute Automation");
+            Page.btnSave.Click();
+
+
+            /*
             SeleniumSetMethods.SelectDropDown("TitleId", "Mr.", PropertyType.Name);
             SeleniumSetMethods.EnterText("Initial", "B", PropertyType.Name);
             SeleniumSetMethods.EnterText("FirstName", "Rammohan", PropertyType.Name);
@@ -43,6 +60,7 @@ namespace SeleniumFirst
    
             SeleniumSetMethods.Click("Save", PropertyType.Name);
             //Test
+            */
         }
 
       
