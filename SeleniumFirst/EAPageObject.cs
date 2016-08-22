@@ -33,7 +33,12 @@ namespace SeleniumFirst
 
         public void FillFormDetails(String Initial, String FirstName, String MiddleName)
         {
-
+            txtIntital.EnterText(Initial);
+            txtFirstName.EnterText(FirstName);
+            txtMiddleName.EnterText(FirstName);
+            btnSave.Clicks();
+            
+            /*
             SeleniumSetMethods.EnterText(txtIntital, "B.");
             SeleniumSetMethods.EnterText(txtFirstName, "Rammohan");
             SeleniumSetMethods.EnterText(txtMiddleName, "Manikyala Rao");
@@ -43,7 +48,8 @@ namespace SeleniumFirst
             Console.WriteLine("Middle Name is :" + SeleniumGetMethods.GetText(txtMiddleName));
 
             SeleniumSetMethods.Click(btnSave);
-            
+            */
+
             /*
             txtIntital.SendKeys(Initial);
             txtFirstName.SendKeys(FirstName);

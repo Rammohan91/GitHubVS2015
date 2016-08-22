@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SeleniumFirst
 {
     class Program
@@ -23,32 +24,29 @@ namespace SeleniumFirst
         [SetUp]
         public void Inititalize()
         {
-            PropertiesCollection.driver = new ChromeDriver();
-
-            //Navigate to Google Page
+            
+            PropertiesCollection.driver = PropertiesCollection.SelectDriver(Drivers.IE);
             PropertiesCollection.driver.Navigate().GoToUrl("http://executeautomation.com/demosite/Login.html");
             PropertiesCollection.driver.Manage().Window.Maximize();
+
+            ExcelUtil.PopulateInCollection(@"D:\Data.xlsx");
 
         }
 
         [Test]
         public void ExecuteTest()
         {
-
-            LoginPageObject LoginPage = new LoginPageObject();
-            LoginPage.Login("username", "password");
             
-
-
-
+            LoginPageObject LoginPage = new LoginPageObject();
+            LoginPage.Login(ExcelUtil.ReadData(1, "Username"), ExcelUtil.ReadData(1, "Password"));
+            
             EAPageObject Page = new EAPageObject();
             Page.FillFormDetails("B.", "Rammohan", "Manikyala Rao");
-
             
             //Page.txtIntital.SendKeys("Execute Automation");
             Page.btnSave.Click();
-
-
+            /*
+             
             /*
             SeleniumSetMethods.SelectDropDown("TitleId", "Mr.", PropertyType.Name);
             SeleniumSetMethods.EnterText("Initial", "B", PropertyType.Name);
